@@ -20,7 +20,12 @@ api_key = os.getenv("OPENAI_API_KEY")
 if not api_key:
     raise ValueError("API key is not set in the environment variables")
 
-# 获取API密钥
+# 获取网页总结使用模型
+web_summary_model = os.getenv("WEB_SUMMARY_MODEL")
+if not web_summary_model:
+    raise ValueError("WEB_SUMMARY_MODEL is not set in the environment variables")
+
+# 总结网页Prompt
 web_summary_prompts = os.getenv("WEB_SUMMARY_PROMPTS")
 if not web_summary_prompts:
     raise ValueError("WEB_SUMMARY_PROMPTS is not set in the environment variables")
@@ -66,7 +71,7 @@ try:
                 "content": web_summary_prompts + web_content,
             }
         ],
-        model="gpt-4-turbo",
+        model=web_summary_model,
         max_tokens=1024,
     )
 
