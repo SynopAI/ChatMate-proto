@@ -1,0 +1,12 @@
+{
+  "default": {
+    "title": ["h1", "h2", "h3"],
+    "description": ["p", "span", ".description"]
+  },
+  "specific_sites": {
+    "https://uniapp.dcloud.net.cn/": {
+      "title": [".article-title", "h1"],
+      "description": [".article-content p", ".description"]
+    }
+  }
+}
