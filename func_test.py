@@ -15,27 +15,34 @@ load_dotenv()
 with open('selectors.json', 'r') as file:
     selector_config = json.load(file)
 
-# 获取API密钥
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    raise ValueError("API key is not set in the environment variables")
+def load_config():
+    # 加载环境变量
+    load_dotenv()
 
-# 获取网页总结使用模型
-web_summary_model = os.getenv("WEB_SUMMARY_MODEL")
-if not web_summary_model:
-    raise ValueError("WEB_SUMMARY_MODEL is not set in the environment variables")
+    # 读取选择器配置
+    with open('selectors.json', 'r') as file:
+        selector_config = json.load(file)
 
-# 总结网页Prompt
-web_summary_prompts = os.getenv("WEB_SUMMARY_PROMPTS")
-if not web_summary_prompts:
-    raise ValueError("WEB_SUMMARY_PROMPTS is not set in the environment variables")
+    # 获取环境变量
+    api_key = os.getenv("OPENAI_API_KEY")
+    web_summary_model = os.getenv("WEB_SUMMARY_MODEL")
+    web_summary_prompts = os.getenv("WEB_SUMMARY_PROMPTS")
+
+    # 检查环境变量
+    if not api_key or not web_summary_model or not web_summary_prompts:
+        raise ValueError("Please set all required environment variables (OPENAI_API_KEY, WEB_SUMMARY_MODEL, WEB_SUMMARY_PROMPTS)")
+
+    return api_key, web_summary_model, web_summary_prompts, selector_config
+
+api_key, web_summary_model, web_summary_prompts, selector_config = load_config()
 
 client = OpenAI(api_key=api_key)
 
 # 指定想要抓取的网页
-# url = "https://github.com/trending"
+# url = "   "
 # url = "https://uniapp.dcloud.net.cn/"
-url = "https://ollama.com/library?sort=popular"
+# url = "https://ollama.com/library?sort=popular"
+url = "https://github.com/DIYgod/RSSHub"
 
 def fetch_web_content(url):
     response = requests.get(url)
