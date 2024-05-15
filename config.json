@@ -1,0 +1,17 @@
+{
+    "prompts": {
+      "get_web_url_prompt": {
+        "prompt_description": "Extract and possibly complete URLs from user input.",
+        "example": {
+          "user_input": "请查看并总结一下这个网站的内容：https://github.com/trending",
+          "response_template": "url = [提取并补全的URL]"
+        },
+        "instructions": {
+          "step_1": "识别用户输入中包含的URL。",
+          "step_2": "检查URL是否完整（检查是否包含'http://'或'https://'）。如果不完整，进行必要的补全。",
+          "step_3": "输出格式应为纯URL，确保输出内容只包含URL，不添加其他文本或解释。"
+        },
+        "output_format": "url = {url}"
+      }
+    }
+  }
