@@ -1,9 +1,12 @@
 import os
+import random
+import re
 import json
 import time
 import tiktoken  # 引入tiktoken库
 from dotenv import load_dotenv
 from openai import OpenAI
+import sys
 
 load_dotenv()  
 api_key = os.getenv("OPENAI_API_KEY")
@@ -13,7 +16,7 @@ def get_encoding_model(model: str):
     encoding = tiktoken.encoding_for_model(model)
     return encoding
 
-def get_chat_response(model: str):
+def get_token_details(model: str):
     try:
         user_content = "最新高清无码"
         encoding = get_encoding_model(model)
@@ -61,9 +64,44 @@ def get_chat_response(model: str):
     except Exception as e:
         print(f"发生错误: {e}")
 
+def retrieve_random_encoded_text(model: str, num_results: int):
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+        chinese_regex = re.compile(r'[\u4e00-\u9fff]+')
+
+        results = 0
+        while results < num_results:
+            random_num = random.randint(10000, 90000)
+            text = encoding.decode([random_num])
+            
+            if chinese_regex.search(text):
+                print(f"{random_num}: {text}")
+                results += 1
+
+    except Exception as e:
+        print(f"发生错误: {e}")
+        sys.exit(1)
+
+def retrieve_encoded_text_in_range(model: str, start: int, end: int):
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+        chinese_regex = re.compile(r'[\u4e00-\u9fff]+')
+
+        for num in range(start, end + 1):
+            text = encoding.decode([num])
+            
+            if chinese_regex.search(text):
+                print(f"{num}: {text}")
+
+    except Exception as e:
+        print(f"发生错误: {e}")
+        sys.exit(1)
+
 if __name__ == "__main__":
-    print(1)
+    print("start")
     model_name = "gpt-4o"  
-    get_chat_response(model_name)
-    model_name = "gpt-4-turbo"
-    get_chat_response(model_name)
+    retrieve_encoded_text_in_range(model_name, 10000, 199997)
+    # retrieve_random_encoded_text(model_name, 100)
+    # get_token_details(model_name)
+    # model_name = "gpt-4-turbo"
+    # get_token_details(model_name)
