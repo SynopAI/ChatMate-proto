@@ -3,7 +3,7 @@ import random
 import re
 import json
 import time
-import tiktoken  # 引入tiktoken库
+import tiktoken
 from dotenv import load_dotenv
 from openai import OpenAI
 import sys
