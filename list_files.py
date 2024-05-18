@@ -25,7 +25,7 @@ if __name__ == "__main__":
     output_file = 'list_files_tree.txt'  # 输出文件名
 
     # 用户指定的目录集合
-    dirs = {'应用程序', '用户'}  # 替换为你想要遍历的目录名
+    dirs = {'Applications', '用户'}  # 替换为你想要遍历的目录名
 
     with open(output_file, 'w') as f:
         for dir_name in dirs:
