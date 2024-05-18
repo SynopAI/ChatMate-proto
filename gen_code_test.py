@@ -18,13 +18,13 @@ def get_encoding_model(model: str):
 
 def get_token_details(model: str):
     try:
-        user_content = "最新高清无码"
+        user_content = "你好，请给我详细介绍一下你自己。"
         encoding = get_encoding_model(model)
         print(encoding)
-        print(encoding.encode(user_content))
+        # print(encoding.encode(user_content))
         
-        # 使用 errors='ignore' 来忽略解码错误
-        print([encoding.decode_single_token_bytes(token).decode('utf-8', errors='ignore') for token in encoding.encode(user_content)])
+        # # 使用 errors='ignore' 来忽略解码错误
+        # print([encoding.decode_single_token_bytes(token).decode('utf-8', errors='ignore') for token in encoding.encode(user_content)])
         
         start_time = time.time()  # 记录开始时间
         
