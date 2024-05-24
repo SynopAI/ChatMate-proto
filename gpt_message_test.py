@@ -17,15 +17,30 @@ def get_message(model: str, user_content):
                 {"role": "system", "content": "You are a helpful assistant"},
                 {"role": "user","content": user_content}
             ],
-            model=model
+            model=model,
+            stream=True
         )
-        response_content = chat_completion.choices[0].message.content
+
+        for chunk in chat_completion:
+            content = chunk.choices[0].delta.content
+            if content:
+                print(content, end='', flush=True)
+
+        # response_content = chat_completion.choices[0].message.content
         
-        print(response_content)
+        # print(response_content)
 
     except Exception as e:
         print(f"发生错误: {e}")
 
+def tts(text):
+    response = client.audio.speech.create(
+        model="tts-1",
+        voice="alloy",
+        input="Hello world! This is a streaming test.",
+    )
+    response.with_streaming_response.method("./temp/output.mp3")
+    
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode("utf-8")
@@ -39,7 +54,7 @@ if __name__ == "__main__":
     # file_path = 'https://cdn1.mre.red/piclist/2024-04-1712502688.webp'
 
     user_content = [
-            {"type": "text", "text": "给我描述一下图片的内容"},
+            {"type": "text", "text": "图片里是什么东西"},
             {"type": "image_url", "image_url": {
                 "url": f"data:image/jpg;base64,{base64_image}"}
             }
