@@ -66,7 +66,6 @@ def transcribe_audio():
         model="whisper-1",
         file=open('./temp/output.wav', "rb"),
     )
-    print("Transcription: ", transcription.text)
     
     # Take screenshot after transcription is done
     screenshot_path = take_screenshot()
@@ -138,9 +137,10 @@ def play_audio(file_path):
 
 def get_message(model: str, user_content):
     try:
+        history =[]
         chat_completion = client.chat.completions.create(
             messages=[
-                {"role": "system", "content": "You are a helpful assistant"},
+                {"role": "system", "content": "You are a helpful a11ssistant"},
                 {"role": "user", "content": user_content}
             ],
             model=model,
@@ -155,9 +155,9 @@ def get_message(model: str, user_content):
                 response_content.append(content)
         
         # 在独立线程中播放音频
-        # full_response = ''.join(response_content)
-        # tts(full_response)
-        # play_audio("./temp/response.wav")
+        full_response = ''.join(response_content)
+        tts(full_response)
+        play_audio("./temp/response.wav")
 
     except Exception as e:
         print(f"发生错误: {e}")
