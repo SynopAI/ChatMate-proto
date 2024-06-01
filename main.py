@@ -197,7 +197,7 @@ def pass_to_gpt(transcription_text, screenshot_path):
         logging.error("No screenshot available.")
         return
     
-    model_name = "gpt-4"
+    model_name = "gpt-4o"
     base64_image = encode_image(screenshot_path)
     
     if not base64_image:
