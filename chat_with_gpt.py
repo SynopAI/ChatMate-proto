@@ -1,3 +1,5 @@
+# 原 `main.py` 文件
+
 import requests
 import sounddevice as sd
 import numpy as np
@@ -184,10 +186,10 @@ def get_message(model: str, user_content):
                 response_content.append(content)
         
         # 在独立线程中播放音频
-        full_response = ''.join(response_content)
-        response_path = tts(full_response)
-        if response_path:
-            play_audio(response_path)
+        # full_response = ''.join(response_content)
+        # response_path = tts(full_response)
+        # if response_path:
+        #     play_audio(response_path)
 
     except Exception as e:
         logging.error(f"Chat completion error: {e}")
