@@ -66,4 +66,4 @@ def pass_to_gpt(transcription_text, screenshot_path):
         }
     ]
     
-    get_message(Config.MODEL_NAME, user_content)
+    get_message(Config.MODEL_NAME, user_content, history=Config.HISTORY, max_history_length=Config.MAX_HISTORY_LENGTH)
