@@ -57,7 +57,7 @@ def start_recording():
     
     try:
         with sd.InputStream(samplerate=RATE, channels=CHANNELS, callback=callback):
-            print("Recording...")
+            print("\nRecording...")
             while is_recording:
                 sd.sleep(100)
     except Exception as e:
@@ -166,14 +166,20 @@ def play_audio(file_path):
     audio_thread = threading.Thread(target=play_audio_thread, args=(file_path,))
     audio_thread.start()
 
-def get_message(model: str, user_content):
+def get_message(model: str, user_content, history: list, max_history_length: int = 10):
     try:
-        history =[]
+        # Append the new user message to the history
+        history.append({"role": "user", "content": user_content})
+
+        # Ensure the history does not exceed the maximum length
+        if len(history) > max_history_length:
+            history = history[-max_history_length:]
+
+        # Add the system message to the beginning of the history
+        messages = [{"role": "system", "content": "You are a helpful assistant"}] + history
+
         chat_completion = client.chat.completions.create(
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant"},
-                {"role": "user", "content": user_content}
-            ],
+            messages=messages,
             model=model,
             stream=True
         )
@@ -184,15 +190,25 @@ def get_message(model: str, user_content):
             if content:
                 print(content, end='', flush=True)
                 response_content.append(content)
-        
+
+        # Append the assistant's response to the history
+        assistant_message = ''.join(response_content)
+        history.append({"role": "assistant", "content": assistant_message})
+
+        # Ensure the history does not exceed the maximum length again
+        if len(history) > max_history_length:
+            history = history[-max_history_length:]
+
         # 在独立线程中播放音频
-        # full_response = ''.join(response_content)
-        # response_path = tts(full_response)
+        # response_path = tts(assistant_message)
         # if response_path:
         #     play_audio(response_path)
 
+        return history  # Return the updated history
+
     except Exception as e:
         logging.error(f"Chat completion error: {e}")
+        return history  # Return the history even in case of error
 
 def pass_to_gpt(transcription_text, screenshot_path):
     if not screenshot_path:
@@ -213,7 +229,7 @@ def pass_to_gpt(transcription_text, screenshot_path):
         }
     ]
     
-    get_message(model_name, user_content)
+    get_message(model_name, user_content, history)
 
 def main():
     try:
@@ -228,4 +244,6 @@ def main():
         logging.error(f"Error in main loop: {e}")
 
 if __name__ == "__main__":
+    global history
+    history = []
     main()
