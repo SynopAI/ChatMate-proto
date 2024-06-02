@@ -19,6 +19,8 @@ class Config:
     TTS_MODEL = "tts-1-1106"
     TTS_VOICE = "echo"
     SYSTEM_PROMPT = "You are a helpful assistant"
+    HISTORY = []
+    MAX_HISTORY_LENGTH = 10
 
     # Ensure necessary directories exist
     os.makedirs(TEMP_DIR, exist_ok=True)
