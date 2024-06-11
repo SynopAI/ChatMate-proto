@@ -1,6 +1,6 @@
 # ChatMate-proto 🤖（项目施工中...）
 
-**ChatMate**这是一款以`LLM`和`VITS`（以及`DiM`）驱动的AI数字人助手产品。🚀
+**ChatMate**这是一款以`LLM`和`VITS`驱动的桌面级AI助手产品。🚀
 
 > ⚠️本项目为**ChatMate**项目的基底测试项目⚠️
 
@@ -8,14 +8,13 @@
 
 - **高度可定制化**：用户可以根据自己的需求，创建具有不同性格和能力的AI助手（GPTs）。
 > 🌟 **尝试体验GPTs**：[点击这里](https://gpt.yucheng.life/market)
-- **基于最新技术**：使用LLM和VITS技术，以及DiM，为用户提供最佳体验。
+- **基于最新技术**：基于LLM和VITS技术，为用户提供可定制化的。
 - **个性化AI助手**：通过Fine-tuning或训练LoRA，定制属于你的AI智能助手。
 
-## 如何开始 🤯
+## 功能演示 🤯
 
-⚠️暂时还不能开始QAQ⚠
- 
- 但你可以通过访问我们的[演示页面](https://gpt.yucheng.life/)来尝试现有的AI助手。
+### 桌面识别编码演示
+[![观看视频](/static/code-demo.png)](https://player.bilibili.com/player.html?isOutside=true&aid=1705633215&bvid=BV1TT421e7Eb&cid=1578941045&p=1)
 
 ## 贡献指南 🤝
 
