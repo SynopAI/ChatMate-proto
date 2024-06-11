@@ -19,7 +19,7 @@ def get_message(model: str, user_content, history: list, max_history_length: int
             history = history[-max_history_length:]
 
         # Add the system message to the beginning of the history
-        messages = [{"role": "system", "content": "You are a helpful assistant"}] + history
+        messages = [{"role": "system", "content": Config.SYSTEM_PROMPT}] + history
 
         chat_completion = client.chat.completions.create(
             messages=messages,
