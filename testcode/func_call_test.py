@@ -6,7 +6,7 @@ import webbrowser
 # Load environment variables
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
+if not api_key: 
     raise ValueError("API key not found. Please set it in the .env file.")
 
 client = openai.OpenAI(api_key=api_key)
