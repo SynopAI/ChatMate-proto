@@ -58,7 +58,7 @@ def take_screenshot():
     screenshot = ImageGrab.grab()
     screenshot = screenshot.convert("RGB")  # Convert RGBA to RGB
     screenshot.save('./temp/screenshot.jpg')
-    print("Screenshot taken and saved as screenshot.jpg.")
+    # print("Screenshot taken and saved as screenshot.jpg.")
 
 def on_press(key):
     try:

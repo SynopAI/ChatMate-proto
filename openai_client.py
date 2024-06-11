@@ -34,7 +34,7 @@ def take_screenshot():
         screenshot = screenshot.convert("RGB")  # Convert RGBA to RGB
         screenshot_path = os.path.join(Config.TEMP_DIR, 'screenshot.jpg')
         screenshot.save(screenshot_path)
-        print(f"Screenshot taken and saved as {screenshot_path}.")
+        # print(f"Screenshot taken and saved as {screenshot_path}.")
         return screenshot_path
     except Exception as e:
         logging.error(f"Screenshot error: {e}")

@@ -21,13 +21,13 @@ def start_recording():
     
     try:
         with sd.InputStream(samplerate=Config.RATE, channels=Config.CHANNELS, callback=callback):
-            print("Recording...")
+            print("\nRecording...")
             while is_recording:
                 sd.sleep(100)
     except Exception as e:
         logging.error(f"Recording error: {e}")
     
-    print("Finished recording.")
+    print("Finished recording.\n")
     audio_data = np.concatenate(recording, axis=0)
     output_path = os.path.join(Config.TEMP_DIR, 'output.wav')
     write(output_path, Config.RATE, audio_data)
