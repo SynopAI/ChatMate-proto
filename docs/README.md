@@ -13,8 +13,11 @@
 
 ## 功能演示 🤯
 
-### 桌面识别编码演示
+### 自动识别编码演示
+
 [![观看视频](/static/code-demo.png)](https://player.bilibili.com/player.html?isOutside=true&aid=1705633215&bvid=BV1TT421e7Eb&cid=1578941045&p=1)
+
+<center>点击图片播放演示视频</center>
 
 ## 贡献指南 🤝
 
