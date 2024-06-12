@@ -20,7 +20,7 @@ class Config:
     TTS_VOICE = "echo"
     SYSTEM_PROMPT = "你是一个人工智能助手，我会给你一张我当前电脑屏幕的截图，并且我会问你一些问题，有可能我的问题与截图无关，你需要帮我解决我的问题，一般来说请使用简体中文回答我的问题"
     HISTORY = []
-    MAX_HISTORY_LENGTH = 10
+    MAX_HISTORY_LENGTH = 3
 
     # Ensure necessary directories exist
     os.makedirs(TEMP_DIR, exist_ok=True)
