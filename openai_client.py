@@ -61,9 +61,7 @@ def pass_to_gpt(transcription_text, screenshot_path):
     
     user_content = [
         {"type": "text", "text": transcription_text},
-        {"type": "image_url", "image_url": {
-            "url": f"data:image/jpg;base64,{base64_image}"}
-        }
+        {"type": "image_url", "image_url": {"url": f"data:image/jpg;base64,{base64_image}", "detail": "high"}}
     ]
     
     get_message(Config.MODEL_NAME, user_content, history=Config.HISTORY, max_history_length=Config.MAX_HISTORY_LENGTH)
