@@ -5,7 +5,6 @@ import os
 import logging
 from scipy.io.wavfile import write
 from config import Config
-from openai_client import transcribe_audio
 
 recording = []
 is_recording = False
@@ -33,6 +32,7 @@ def start_recording():
     write(output_path, Config.RATE, audio_data)
     
     # Transcribe audio to text
+    from openai_client import transcribe_audio
     transcribe_audio(output_path)
 
 def stop_recording():
