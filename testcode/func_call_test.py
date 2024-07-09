@@ -15,7 +15,7 @@ GPT_MODEL = "gpt-4o"
 
 def open_browser_search(query):
     # 使用Google搜索
-    search_url = f"https://www.google.com/search?q={query}"
+    search_url = f"https://s.jina.ai/{query}"
     # 打开默认浏览器并进行搜索
     webbrowser.open(search_url)
     print(f"已执行打开浏览器搜索{query}")
@@ -41,7 +41,7 @@ tools = [
     }
 ]
 
-user_input = input("有什么可以帮你：")
+user_input = input()
 
 messages = [{
     "role": "user",
