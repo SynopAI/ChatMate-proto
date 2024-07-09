@@ -1,13 +1,10 @@
-# openai_client.py
 import os
 import logging
 from openai import OpenAI
-from PIL import ImageGrab
-import base64
 from config import Config
-from chat_manager import get_message
-from audio_player import tts, play_audio
 from logging_config import setup_logging
+from utils import take_screenshot, encode_image
+from main import get_message
 
 setup_logging()
 
@@ -27,26 +24,6 @@ def transcribe_audio(audio_path):
         pass_to_gpt(transcription.text, screenshot_path)
     except Exception as e:
         logging.error(f"Transcription error: {e}")
-
-def take_screenshot():
-    try:
-        screenshot = ImageGrab.grab()
-        screenshot = screenshot.convert("RGB")  # Convert RGBA to RGB
-        screenshot_path = os.path.join(Config.TEMP_DIR, 'screenshot.jpg')
-        screenshot.save(screenshot_path)
-        # print(f"Screenshot taken and saved as {screenshot_path}.")
-        return screenshot_path
-    except Exception as e:
-        logging.error(f"Screenshot error: {e}")
-        return None
-
-def encode_image(image_path):
-    try:
-        with open(image_path, "rb") as image_file:
-            return base64.b64encode(image_file.read()).decode("utf-8")
-    except Exception as e:
-        logging.error(f"Image encoding error: {e}")
-        return None
 
 def pass_to_gpt(transcription_text, screenshot_path):
     if not screenshot_path:
