@@ -317,7 +317,6 @@ def get_message(model: str, user_content, history: list, max_history_length: int
             history = history[-max_history_length:]
 
         # stream tts
-        # stream_tts(assistant_message)
         threading.Thread(target=stream_tts, args=(assistant_message,)).start()
 
         return history  # Return the updated history
