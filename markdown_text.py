@@ -41,7 +41,7 @@ def apply_markdown(text):
             # Inline code
             code_match = re.match(r'`([^`]+)`', remaining_line)
             if code_match:
-                processed_line.append(('inline_code', code_match.group(1)))
+                processed_line.append(f'<code class="inline-code">{code_match.group(1)}</code>')
                 remaining_line = remaining_line[code_match.end():]
                 continue
             
@@ -84,3 +84,25 @@ def apply_markdown(text):
                 formatted_text.append(('normal', '\n'))
     
     return formatted_text
+
+# Example CSS styles for code blocks and inline code
+css_styles = '''
+<style>
+.code-block {
+    background-color: #2e2e2e;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-family: monospace;
+}
+
+.inline-code {
+    background-color: #2e2e2e;
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+</style>
+'''
