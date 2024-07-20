@@ -49,23 +49,23 @@ tools = [
             },
         }
     },
-    {
-        "type": "function",
-        "function": {
-            "name": "grab_web",
-            "description": "Fetches LLM-friendly string data from a URL or search query using Jina Reader API",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "query": {
-                        "type": "string",
-                        "description": "The URL or search query to fetch LLM-friendly data from",
-                    },
-                },
-                "required": ["query"],
-            },
-        }
-    }
+    # {
+    #     "type": "function",
+    #     "function": {
+    #         "name": "grab_web",
+    #         "description": "Fetches LLM-friendly string data from a URL or search query using Jina Reader API",
+    #         "parameters": {
+    #             "type": "object",
+    #             "properties": {
+    #                 "query": {
+    #                     "type": "string",
+    #                     "description": "The URL or search query to fetch LLM-friendly data from",
+    #                 },
+    #             },
+    #             "required": ["query"],
+    #         },
+    #     }
+    # }
 ]
 
 def call_tool_function(tool_function_name, tool_query_string):

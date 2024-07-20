@@ -13,6 +13,10 @@
 
 ## 功能演示 🤯
 
+### 程序主界面 (20240720)
+
+![MainForm](/static/MainForm.png)
+
 ### 自动识别编码演示
 
 [![观看视频](/static/code-demo.png)](https://player.bilibili.com/player.html?isOutside=true&aid=1705633215&bvid=BV1TT421e7Eb&cid=1578941045&p=1)
